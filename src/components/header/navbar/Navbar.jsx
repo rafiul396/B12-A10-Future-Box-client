@@ -9,14 +9,8 @@ const Navbar = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
     const handleFalse = () => setIsOpen(false);
     return (
-        <nav className="w-full bg-white shadow-sm py-3 px-6 md:px-10">
-            <div className="flex items-center justify-between">
-                <ul className="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-700">
-                    <li className="cursor-pointer hover:text-orange-500"><NavLink>Home</NavLink></li>
-                    <li className="cursor-pointer hover:text-orange-500"><NavLink>Add Transaction</NavLink></li>
-                    <li className="cursor-pointer hover:text-orange-500"><NavLink>My Transactions</NavLink></li>
-                    <li className="cursor-pointer hover:text-orange-500"><NavLink>Reports</NavLink></li>
-                </ul>
+        <nav className="w-full bg-white py-3 px-6 md:px-10">
+            <div className="flex items-center justify-between">                
                 <div>
                     <Link className='cursor-pointer'>
                         <img
@@ -26,7 +20,13 @@ const Navbar = () => {
                     />
                     </Link>
                 </div>
-                <div className="hidden md:flex items-center space-x-4">
+                <ul className="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-700">
+                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>Home</NavLink></li>
+                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>Add Transaction</NavLink></li>
+                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>My Transactions</NavLink></li>
+                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>Reports</NavLink></li>
+                </ul>
+                <div className="hidden lg:flex items-center space-x-4">
                     <Link to="/login" className="bg-[#0d1b2a] text-white text-sm px-5 py-2 rounded-full hover:opacity-90 transition">
                         Log In
                     </Link>
