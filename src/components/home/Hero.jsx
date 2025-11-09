@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 const Hero = () => {
     return (
         <section className="h-[calc(100vh-66.73px)] bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${banner})` }}>
-            <div className='bg-gradient-to-b from-accent to-[#ff690000] h-full w-full py-32'>
+            <div className='bg-gradient-to-b from-accent to-[#ff690000] h-full w-full'>
                 <div className="w-full py-20 px-6 lg:px-20 flex flex-col items-center text-center relative">
                     <h1 className="text-3xl xl:text-5xl font-bold leading-tight max-w-3xl">
                         Take control of your money, <br /> one smart step at a time

@@ -14,7 +14,7 @@ const Login = () => {
     }
 
     return (
-        <section className='flex items-center h-[calc(100vh-66.73px)] py-20 bg-[#f5f5f5] text-black px-7 xl:px-0'>
+        <section className='flex items-center min-h-screen py-10 bg-[#f5f5f5] text-black px-7 xl:px-0'>
             <Container>
                 <div className='flex flex-col md:flex-row-reverse justify-between shadow-sm p-10 xl:px-52 rounded-xl bg-base-100 relative overflow-hidden'>
                     <div className='w-[200px] h-[200px] bg-accent rounded-full absolute -top-16 -left-28 '></div>

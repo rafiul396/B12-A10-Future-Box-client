@@ -21,9 +21,9 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <ul className="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-700">
-                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>Home</NavLink></li>
-                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>Add Transaction</NavLink></li>
-                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>My Transactions</NavLink></li>
+                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink to="/" >Home</NavLink></li>
+                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink to="/add-transaction">Add Transaction</NavLink></li>
+                    <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink to="/my-transaction">My Transactions</NavLink></li>
                     <li className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300"><NavLink>Reports</NavLink></li>
                 </ul>
                 <div className="hidden lg:flex items-center space-x-4">
@@ -46,9 +46,9 @@ const Navbar = () => {
             {isOpen && (
                 <div className="mt-4 lg:hidden flex flex-col space-y-3 text-gray-700 font-medium">
                     <ul className="flex flex-col space-y-3">
-                        <li onClick={handleFalse} className="cursor-pointer hover:text-orange-500"><NavLink>Home</NavLink></li>
-                    <li onClick={handleFalse} className="cursor-pointer hover:text-orange-500"><NavLink>Add Transaction</NavLink></li>
-                    <li onClick={handleFalse} className="cursor-pointer hover:text-orange-500"><NavLink>My Transactions</NavLink></li>
+                        <li onClick={handleFalse} className="cursor-pointer hover:text-orange-500"><NavLink to="/">Home</NavLink></li>
+                    <li onClick={handleFalse} className="cursor-pointer hover:text-orange-500"><NavLink to="/add-transaction">Add Transaction</NavLink></li>
+                    <li onClick={handleFalse} className="cursor-pointer hover:text-orange-500"><NavLink to="/my-transaction">My Transactions</NavLink></li>
                     <li onClick={handleFalse} className="cursor-pointer hover:text-orange-500"><NavLink>Reports</NavLink></li>
                     </ul>
                     <div className="flex flex-col space-y-2 pt-3">
