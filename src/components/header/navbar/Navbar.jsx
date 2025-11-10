@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import logo from '../../../assets/logo.png'
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../../../provider/AuthProvider';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { user, logOut } = use(AuthContext);
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const handleFalse = () => setIsOpen(false);
@@ -27,12 +29,24 @@ const Navbar = () => {
                     <li><NavLink className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300" to="/report">Reports</NavLink></li>
                 </ul>
                 <div className="hidden lg:flex items-center space-x-4">
-                    <Link to="/login" className="bg-[#0d1b2a] text-white text-sm px-5 py-2 rounded-full hover:opacity-90 transition">
-                        Log In
-                    </Link>
-                    <Link to="/signup" className="bg-orange-500 text-white text-sm px-5 py-2 rounded-full hover:bg-primary transition">
-                        Sign Up
-                    </Link>
+                    {
+                        user ? (
+                            <>
+                                <button onClick={logOut}>
+                                    Log out
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login" className="bg-[#0d1b2a] text-white text-sm px-5 py-2 rounded-full hover:opacity-90 transition">
+                                    Log In
+                                </Link>
+                                <Link to="/signup" className="bg-orange-500 text-white text-sm px-5 py-2 rounded-full hover:bg-primary transition">
+                                    Sign Up
+                                </Link>
+                            </>
+                        )
+                    }
                 </div>
                 <div className="lg:hidden flex items-center">
                     <button
