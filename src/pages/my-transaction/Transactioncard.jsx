@@ -10,7 +10,7 @@ const Transactioncard = () => {
     }
 
     return (
-        <div className="bg-base-100 dark:bg-gray-800 rounded-xl shadow-md p-5 w-full transition hover:shadow-lg border border-accent hover:border-primary">
+        <div className="bg-base-100 rounded-xl shadow-md p-5 w-full transition hover:shadow-lg border border-accent hover:border-primary">
             <div className="flex justify-between items-start mb-4">
                 <h3
                     className={`text-lg font-semibold`}
