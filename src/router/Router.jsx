@@ -5,6 +5,7 @@ import Signup from "../pages/log-sign/Signup";
 import Login from "../pages/log-sign/Login";
 import AddT from "../pages/add-transaction/AddT";
 import Mytransaction from "../pages/my-transaction/Mytransaction";
+import Details from "../pages/Details/Details";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
         {
           path: "/my-transaction",
           element: <Mytransaction />
+        },
+        {
+          path: "/details",
+          element: <Details />
         }
     ]
   },

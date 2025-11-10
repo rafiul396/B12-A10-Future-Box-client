@@ -9,3 +9,10 @@
   --color-secondary: #0d1b2a;
   --color-accent: #ff690066;
 }
+
+.header-menu .active {
+  border: 2px solid #ff6900;
+  color: #ff6900;
+  padding: 4px 8px;
+  @apply rounded-full
+}
