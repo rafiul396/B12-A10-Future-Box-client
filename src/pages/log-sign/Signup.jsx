@@ -10,7 +10,9 @@ const googleProvider = new GoogleAuthProvider();
 
 const Signup = () => {
     const [type, setType] = useState(true);
-    const { createUserByGoogle, setUser } = use(AuthContext);
+    const [error, setError] = useState(null);
+    const [missingE, setMissingE] = useState(null);
+    const { createUserByGoogle, createUserByEmail, updateUserProfile, setUser } = use(AuthContext);
     const navigate = useNavigate();
 
     const handleWithGoogle = () => {
@@ -23,7 +25,7 @@ const Signup = () => {
             })
             .catch((err) => {
                 console.log(err.code);
-                
+
             })
     }
 
@@ -31,10 +33,63 @@ const Signup = () => {
         e.preventDefault()
         const email = e.target.email.value;
         const pass = e.target.pass.value;
-        console.log(email, pass);
-        
-        
-        
+        const name = e.target.name.value;
+        const photoURL = e.target.photo.value;
+        console.log(email, pass, name, photoURL);
+
+        // clear errros
+        setError(null);
+        setMissingE(null)
+
+        // password validation
+        if (pass.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
+
+        const passUpperRegex = /[A-Z]/;
+
+        if (!passUpperRegex.test(pass)) {
+            setError("Password must contain at least one uppercase letter.");
+            return;
+        }
+
+        const passLowerRegex = /[a-z]/;
+
+        if (!passLowerRegex.test(pass)) {
+            setError("Password must contain at least one lowercase letter.");
+            return;
+        }
+
+        // create user
+        createUserByEmail(email, pass)
+            .then(result => {
+                const user = result.user
+                // console.log(user);
+                updateUserProfile({ displayName: name, photoURL: photoURL })
+                    .then(() => {
+                        e.target.reset();
+                        setUser({ ...user, displayName: name, photoURL: photoURL });
+                        navigate("/")
+                    })
+                    .catch(() => {
+                        setUser(user)
+                    })
+
+            })
+            .catch(error => {
+                if (error.code === 'auth/missing-email') {
+                    setMissingE('Email not found!')
+                    return
+                }
+
+                if (error.code === 'auth/email-already-in-use') {
+                    setMissingE('This email is already registered. Please try logging in.')
+                    return
+                }
+
+            })
+
 
     }
 
@@ -75,17 +130,17 @@ const Signup = () => {
                             {/* Form */}
                             <form onSubmit={handleSignup} className='space-y-4'>
                                 <input type="text" className="p-2 pl-4 border border-accent w-full rounded-full outline-primary text-xl font-extralight" placeholder="Name" name='name' required />
-                                <input type="email" className="p-2 pl-4 border border-accent w-full rounded-full outline-primary text-xl font-extralight" placeholder="Email" name='email' />
-                                {/* {
-                        missingE && <p className='text-red-700'>{missingE}</p>
-                    } */}
+                                <input type="email" className={`p-2 pl-4 border border-accent w-full rounded-full outline-primary text-xl font-extralight ${missingE ? 'border-2 border-red-700' : ''}`} placeholder="Email" name='email' />
+                                {
+                                    missingE && <p className='text-red-700'>{missingE}</p>
+                                }
                                 <input type="text" className="p-2 pl-4 border border-accent w-full rounded-full outline-primary text-xl font-extralight" placeholder="Photo-URL" name='photo' />
                                 <div className='relative'>
-                                    <input type={!type ? 'text' : 'password'} className="p-2 pl-4 border border-accent w-full rounded-full outline-primary text-xl font-extralight" placeholder="Password" name='pass' /><span onKeyDown={(e) => e.preventDefault} onClick={handleInputType} className='text-xl absolute top-3.5 right-5'>{!type ? <IoMdEyeOff /> : <IoEye />}</span>
+                                    <input type={!type ? 'text' : 'password'} className={`p-2 pl-4 border border-accent w-full rounded-full outline-primary text-xl font-extralight ${error ? 'border-2 border-red-700' : ''}`} placeholder="Password" name='pass' /><span onKeyDown={(e) => e.preventDefault} onClick={handleInputType} className='text-xl absolute top-3.5 right-5'>{!type ? <IoMdEyeOff /> : <IoEye />}</span>
                                 </div>
-                                {/* {
-                        error && <p className='text-red-700'>{error}</p>
-                    } */}
+                                {
+                                    error && <p className='text-red-700'>{error}</p>
+                                }
                                 <button className="btn p-6 rounded-full w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold text-white transition">Sign Up</button>
                             </form>
                             <p className='text-center font-semibold md:hidden'>Already have an account. Please <Link className='text-primary hover:underline' to="/login">Login</Link></p>
