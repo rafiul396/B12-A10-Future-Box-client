@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 import Container from '../../components/layout/Container';
 import { useLoaderData, useNavigate, useParams } from 'react-router';
+import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Details = () => {
+    const [sData, setSdata] = useState(null);
+    const [loader, setLoader] = useState(true)
     const {id} = useParams();
+    const {user} = use(AuthContext)
+    // const sss = useLoaderData()
+    // console.log(sss);
+    
     console.log(id);
-    const transactionDetails = useLoaderData();
     const navigate = useNavigate();
 
-    const { type, category, amount, date, description, email, name } = transactionDetails;
+    useEffect(() => {
+        fetch(`http://localhost:3000/my-transaction/${id}`, {
+            headers: {
+                authorization: 'hello'
+            }
+        })
+        .then(result => {
+            return result.json()
+        })
+        .then(data => {
+            setSdata(data)
+            console.log(data);
+            setLoader(false)
+        })
+    }, [])
+
+    
     
 
     const onUpdate = () => {
@@ -46,6 +68,12 @@ const Details = () => {
                 }
             });
         }
+
+    if(loader){
+        return <h1>Loading...</h1>
+    }
+
+    const { type, category, amount, date, description, email, name } = sData;
 
 
     return (

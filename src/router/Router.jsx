@@ -6,6 +6,8 @@ import Login from "../pages/log-sign/Login";
 import AddT from "../pages/add-transaction/AddT";
 import Mytransaction from "../pages/my-transaction/Mytransaction";
 import Details from "../pages/Details/Details";
+import PrivateRoute from "../privateroute/PrivateRoute";
+import Report from "../pages/report/Report";
 
 export const router = createBrowserRouter([
   {
@@ -26,17 +28,27 @@ export const router = createBrowserRouter([
         },
         {
           path: "/add-transaction",
-          element: <AddT />
+          element: <PrivateRoute>
+            <AddT />
+          </PrivateRoute>
         },
         {
           path: "/my-transaction",
           loader: () => fetch('http://localhost:3000/my-transaction'),
-          element: <Mytransaction />
+          element: <PrivateRoute>
+            <Mytransaction />
+          </PrivateRoute>
         },
         {
           path: "/transaction-details/:id",
           loader: ({ params }) => fetch(`http://localhost:3000/my-transaction/${params.id}`),
           element: <Details />
+        },
+        {
+          path: "/report",
+          element: <PrivateRoute>
+            <Report />
+          </PrivateRoute>
         }
     ]
   },

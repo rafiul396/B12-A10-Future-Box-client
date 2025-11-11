@@ -8,6 +8,8 @@ const Mytransaction = () => {
     const transactionInfo = useLoaderData();
     const [infos, setInfos] = useState(transactionInfo)
     console.log(transactionInfo);
+    console.log(infos);
+    
     
     
 
