@@ -9,6 +9,7 @@ import Details from "../pages/Details/Details";
 import PrivateRoute from "../privateroute/PrivateRoute";
 import Report from "../pages/report/Report";
 import Update from "../pages/update/Update";
+import MyProfile from "../pages/my-profile/MyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
           element: <PrivateRoute>
             <Update />
           </PrivateRoute>
+        },
+        {
+          path: "/my-profile",
+          element: <MyProfile />
         }
     ]
   },
