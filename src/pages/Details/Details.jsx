@@ -1,18 +1,16 @@
 import React, { use, useEffect, useState } from 'react';
 import Container from '../../components/layout/Container';
-import { useLoaderData, useNavigate, useParams } from 'react-router';
+import { Link, useLoaderData, useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Details = () => {
     const [sData, setSdata] = useState(null);
     const [loader, setLoader] = useState(true)
-    const {id} = useParams();
-    const {user} = use(AuthContext)
-    // const sss = useLoaderData()
-    // console.log(sss);
-    
-    console.log(id);
+    const { id } = useParams();
+    const infos = useLoaderData();
+    // console.log(infos);
+    const { user } = use(AuthContext)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,59 +19,68 @@ const Details = () => {
                 authorization: 'hello'
             }
         })
-        .then(result => {
-            return result.json()
-        })
-        .then(data => {
-            setSdata(data)
-            console.log(data);
-            setLoader(false)
-        })
+            .then(result => {
+                return result.json()
+            })
+            .then(data => {
+                setSdata(data)
+                setLoader(false)
+            })
     }, [])
 
-    
-    
+
+
+
+
 
     const onUpdate = () => {
         alert('on update')
     }
 
-        const onDelete = () => {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch(`http://localhost:3000/my-transaction/${id}`, {
-                        method: 'DELETE'
+    const onDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/my-transaction/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(result => result.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            navigate('/my-transaction')
+                        }
                     })
-                        .then(result => result.json())
-                        .then(data => {
-                            console.log(data);
-                            if (data.deletedCount) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                });
-                                navigate('/my-transaction')
-                            }
-                        })
 
-                }
-            });
-        }
+            }
+        });
+    }
 
-    if(loader){
+    if (loader) {
         return <h1>Loading...</h1>
     }
 
-    const { type, category, amount, date, description, email, name } = sData;
+    const { type, category, amount, date, description, email, name, _id } = sData;
+
+    // Total amount
+    const sameCate = infos.filter(cate => cate.category === category)
+    // console.log(sameCate);
+    const total = sameCate.reduce((acc, item) => acc + Number(item.amount), 0)
+    console.log(total);
+
+
 
 
     return (
@@ -86,29 +93,37 @@ const Details = () => {
                         <div className='space-y-3'>
                             <h2 className='text-4xl text-primary text-center font-semibold'>{type}</h2>
                             <div className='flex justify-between'>
-                                <p className='text-2xl font-semibold'>Amount of Income : {amount} BDT</p>
-                                <p className='text-xl text-gray-500'>Date of Income : {date}</p>
+                                <p className='text-2xl font-semibold'>Amount of {type} : {amount} BDT</p>
+                                <p className='text-xl text-gray-500'>Date of {type} : {date}</p>
                             </div>
-                            <p className='text-2xl font-semibold'>Incomed by "{category}"</p>
+                            <p className='text-2xl font-semibold'>{type} category "{category}"</p>
                             <div>
-                                <h2 className='text-2xl'>Description</h2>
-                                <p className='text-base text-gray-400'>
+                                <h2 className='text-xl'>Description</h2>
+                                <p className='text-base text-gray-800'>
                                     {description}
                                 </p>
                             </div>
-                            <div className='text-end space-x-2'>
-                                <button
-                                    onClick={onUpdate}
-                                    className="px-4 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg text-sm transition"
-                                >
-                                    Update
-                                </button>
-                                <button
-                                    onClick={onDelete}
-                                    className="px-4 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm transition"
-                                >
-                                    Delete
-                                </button>
+                            <div>
+                                <p className='font-semibold'>Total {type} on category this <b>{total}</b> BDT</p>
+                            </div>
+                            <div className='flex justify-between items-center'>
+                                <div className='space-x-2'>
+                                    <Link
+                                        to={`/update/${_id}`}
+                                        className="px-4 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg text-sm transition"
+                                    >
+                                        Update
+                                    </Link>
+                                    <button
+                                        onClick={onDelete}
+                                        className="px-4 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm transition"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                                <Link className='bg-orange-500 text-white text-sm px-5 py-2 rounded-xl hover:bg-orange-400 transition' to="/my-transaction">
+                                    Back
+                                </Link>
                             </div>
                         </div>
                     </div>

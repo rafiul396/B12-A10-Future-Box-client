@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
 const Transactioncard = ({ info, infos, setInfos }) => {
@@ -73,12 +74,12 @@ const Transactioncard = ({ info, infos, setInfos }) => {
                     >
                         View Details
                     </a>
-                    <button
-                        onClick={onUpdate}
+                    <Link
+                        to={`/update/${_id}`}
                         className="px-4 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg text-sm transition"
                     >
                         Update
-                    </button>
+                    </Link>
                     <button
                         onClick={onDelete}
                         className="px-4 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm transition"

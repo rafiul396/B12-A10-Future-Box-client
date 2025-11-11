@@ -8,6 +8,7 @@ import Mytransaction from "../pages/my-transaction/Mytransaction";
 import Details from "../pages/Details/Details";
 import PrivateRoute from "../privateroute/PrivateRoute";
 import Report from "../pages/report/Report";
+import Update from "../pages/update/Update";
 
 export const router = createBrowserRouter([
   {
@@ -41,13 +42,22 @@ export const router = createBrowserRouter([
         },
         {
           path: "/transaction-details/:id",
-          loader: ({ params }) => fetch(`http://localhost:3000/my-transaction/${params.id}`),
-          element: <Details />
+          loader: () => fetch(`http://localhost:3000/my-transaction`),
+          element: <PrivateRoute>
+            <Details />
+          </PrivateRoute>
         },
         {
           path: "/report",
           element: <PrivateRoute>
             <Report />
+          </PrivateRoute>
+        },
+        {
+          path: "/update/:id",
+          loader: ({ params }) => fetch(`http://localhost:3000/my-transaction/${params.id}`),
+          element: <PrivateRoute>
+            <Update />
           </PrivateRoute>
         }
     ]

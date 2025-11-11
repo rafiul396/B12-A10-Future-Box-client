@@ -7,8 +7,8 @@ import useData from '../../hooks/useData';
 const Mytransaction = () => {
     const transactionInfo = useLoaderData();
     const [infos, setInfos] = useState(transactionInfo)
-    console.log(transactionInfo);
-    console.log(infos);
+    // console.log(transactionInfo);
+    // console.log(infos);
     
     
     

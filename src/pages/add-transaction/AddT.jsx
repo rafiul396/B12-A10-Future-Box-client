@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import Container from '../../components/layout/Container';
 import { Link } from 'react-router';
 import { AuthContext } from '../../provider/AuthProvider';
+import { toast } from 'react-toastify';
 
 const AddT = () => {
     const [bool, setBool] = useState('income')
@@ -29,8 +30,8 @@ const AddT = () => {
         })
             .then(result => result.json())
             .then(data => {
-                console.log(data);
-
+                e.target.reset()
+                toast('Transaction Successfully Added!')
             })
             .catch(err => {
                 console.log(err);
@@ -60,17 +61,18 @@ const AddT = () => {
             body: JSON.stringify(expenseData)
         })
             .then(result => {
-                result.json()
-                
+                return result.json()
             })
             .then(data => {
-                alert('Transaction Successfully Compelete!')
+                e.target.reset()
+                toast('Transaction Successfully Added!')
             })
             .catch(err => {
                 console.log(err);
             })
 
 }
+
 
 return (
     <section className='flex items-center py-10 min-h-screen bg-[#f5f5f5] text-black px-7 xl:px-0'>
