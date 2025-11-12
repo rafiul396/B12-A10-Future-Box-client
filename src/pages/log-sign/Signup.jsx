@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router';
 import Container from '../../components/layout/Container';
 import { AuthContext } from '../../provider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -44,6 +45,7 @@ const Signup = () => {
         // password validation
         if (pass.length < 6) {
             setError("Password must be at least 6 characters long.");
+            toast.error("Password must be at least 6 characters long.")
             return;
         }
 
@@ -51,6 +53,7 @@ const Signup = () => {
 
         if (!passUpperRegex.test(pass)) {
             setError("Password must contain at least one uppercase letter.");
+            toast.error("Password must contain at least one uppercase letter.")
             return;
         }
 
@@ -58,6 +61,7 @@ const Signup = () => {
 
         if (!passLowerRegex.test(pass)) {
             setError("Password must contain at least one lowercase letter.");
+            toast.error("Password must contain at least one lowercase letter.")
             return;
         }
 
@@ -80,11 +84,13 @@ const Signup = () => {
             .catch(error => {
                 if (error.code === 'auth/missing-email') {
                     setMissingE('Email not found!')
+                    toast.error('Email not found!')
                     return
                 }
 
                 if (error.code === 'auth/email-already-in-use') {
                     setMissingE('This email is already registered. Please try logging in.')
+                    toast.error('This email is already registered. Please try logging in.')
                     return
                 }
 

@@ -3,14 +3,32 @@ import Container from '../../components/layout/Container';
 import Transactioncard from './Transactioncard';
 import { useLoaderData } from 'react-router';
 import useData from '../../hooks/useData';
+import { useEffect } from 'react';
+import { use } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Mytransaction = () => {
-    const transactionInfo = useLoaderData();
-    const [infos, setInfos] = useState(transactionInfo)
-    // console.log(transactionInfo);
-    // console.log(infos);
+    const {user} = use(AuthContext)
+    const [infos, setInfos] = useState([])
+    const [loader, setLoader] = useState(true)    
     
-    
+    useEffect(() => {
+        fetch(`http://localhost:3000/my-transaction?email=${user.email}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
+        .then(result => result.json())
+        .then(data => {
+            console.log(data);
+            setInfos(data)
+            setLoader(false)
+        })
+    }, [])
+
+    if(loader){
+        return <h1>Loading...</h1>
+    }
     
 
     return (

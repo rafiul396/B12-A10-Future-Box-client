@@ -7,16 +7,15 @@ import Swal from 'sweetalert2';
 const Details = () => {
     const [sData, setSdata] = useState(null);
     const [loader, setLoader] = useState(true)
+    const [infos, setInfos] = useState([])
     const { id } = useParams();
-    const infos = useLoaderData();
-    // console.log(infos);
     const { user } = use(AuthContext)
     const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:3000/my-transaction/${id}`, {
             headers: {
-                authorization: 'hello'
+                authorization: `Bearer ${user.accessToken}`
             }
         })
             .then(result => {
@@ -26,6 +25,18 @@ const Details = () => {
                 setSdata(data)
                 setLoader(false)
             })
+    }, [])
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/my-transaction?email=${user.email}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
+        .then(result => result.json())
+        .then(data => {
+            setInfos(data)
+        })
     }, [])
 
 
@@ -78,10 +89,6 @@ const Details = () => {
     const sameCate = infos.filter(cate => cate.category === category)
     // console.log(sameCate);
     const total = sameCate.reduce((acc, item) => acc + Number(item.amount), 0)
-    console.log(total);
-
-
-
 
     return (
         <div>
@@ -104,7 +111,7 @@ const Details = () => {
                                 </p>
                             </div>
                             <div>
-                                <p className='font-semibold'>Total {type} on category this <b>{total}</b> BDT</p>
+                                <p className='font-semibold'>Total {type} {type === 'Income' ? 'by' : 'for'} {category} : <b>{total}</b> BDT</p>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='space-x-2'>

@@ -46,12 +46,7 @@ const tips = [
     title: "9. Practice the 24-Hour Rule",
     body:
       "If it isn’t necessary, pause for 24 hours. Most impulses cool down like tea left on the table.",
-  },
-  {
-    title: "10. Reward Yourself (Smartly)",
-    body:
-      "Budgeting is navigation, not punishment. Celebrate small wins so progress feels good.",
-  },
+  }
 ];
 
 const Bugdeting = () => {

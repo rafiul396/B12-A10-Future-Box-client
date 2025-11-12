@@ -136,7 +136,7 @@ return (
                                     <input
                                         type="text"
                                         id="email"
-                                        className="w-full px-3 py-2 border rounded-lg bg-white text-gray-700 focus:outline-none border-primary"
+                                        className="w-full px-3 py-2 border rounded-lg bg-white text-gray-700 focus:outline-none border-primary cursor-no-drop"
                                         placeholder='Email'
                                         defaultValue={user?.email}
                                         readOnly
@@ -147,7 +147,7 @@ return (
                                     <input
                                         type="text"
                                         id="name"
-                                        className="w-full px-3 py-2 border rounded-lg bg-white text-gray-700 focus:outline-none border-primary"
+                                        className="w-full px-3 py-2 border rounded-lg bg-white text-gray-700 focus:outline-none border-primary cursor-no-drop"
                                         placeholder='Name'
                                         defaultValue={user?.displayName}
                                         readOnly

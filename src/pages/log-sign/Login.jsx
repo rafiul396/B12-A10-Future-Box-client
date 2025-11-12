@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import Container from '../../components/layout/Container';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AuthContext } from '../../provider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -49,6 +50,7 @@ const Login = () => {
             .catch(error => {
                 if (error.code === 'auth/invalid-credential') {
                     setError('Email or Password is invalid!')
+                    toast.error('Email or Password is invalid!')
                 }
             })
 
