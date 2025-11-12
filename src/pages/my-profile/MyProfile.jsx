@@ -1,4 +1,5 @@
 import React from "react";
+import { use } from "react";
 import {
   FiUser,
   FiHeart,
@@ -8,8 +9,11 @@ import {
   FiLogOut,
 } from "react-icons/fi";
 import { Outlet } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const MyProfile = () => {
+  const {logOut} = use(AuthContext)
+
   return (
     <section className="min-h-screen bg-[#fafafa] flex flex-col md:flex-row">
       {/* Sidebar */}
@@ -37,7 +41,7 @@ const MyProfile = () => {
         </nav>
 
         <div className="mt-auto w-full flex justify-center md:justify-start pt-6 md:pt-10">
-          <button className="flex items-center gap-2 text-red-500 font-medium hover:text-red-600 transition">
+          <button onClick={logOut} className="flex items-center gap-2 text-red-500 font-medium hover:text-red-600 transition">
             <FiLogOut /> Log out
           </button>
         </div>
