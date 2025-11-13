@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Container from '../../components/layout/Container';
 import Transactioncard from './Transactioncard';
-import { useLoaderData } from 'react-router';
-import useData from '../../hooks/useData';
 import { useEffect } from 'react';
 import { use } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';

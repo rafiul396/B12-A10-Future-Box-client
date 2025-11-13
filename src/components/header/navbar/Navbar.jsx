@@ -43,12 +43,12 @@ const Navbar = () => {
                                         <Switch />
                                 <img onClick={profileClicker} title={user?.displayName} className='w-12 h-12 cursor-pointer object-fill rounded-full border-2 border-primary p-[2px]' src={user.photoURL ? user.photoURL : userLogo} alt="Profile Picture" />
                                 {open && (
-                                    <div className="absolute right-16 top-14 w-48 bg-white border border-accent rounded shadow-lg z-50 p-1 space-y-2">
-                                        <div>
-                                            <p className="px-4 py-2 text-sm text-gray-700">{user.displayName}</p>
-                                        <p className="px-4 py-2 text-sm text-gray-700">{user.email}</p>
+                                    <div className="absolute right-16 top-14 w-48 bg-secondary border border-accent rounded shadow-lg z-50 space-y-2 py-2">
+                                        <div className='p-2'>
+                                            <p className=" text-sm font-semibold text-base text-gray-700">{user.displayName}</p>
+                                            <p className=" text-sm text-gray-700">{user.email}</p>
                                         </div>
-                                        <Link to="/my-profile" onClick={() => setOpen(false)} className="block w-full text-left px-4 py-2 hover:bg-gray-100">My Profile</Link>
+                                        <Link to="/my-profile" onClick={() => setOpen(false)} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-100">My Profile</Link>
                                         <button className='bg-orange-500 w-full cursor-pointer text-white text-sm px-5 py-2 rounded-full hover:bg-primary transition' onClick={logOut}>
                                             Log out
                                         </button>

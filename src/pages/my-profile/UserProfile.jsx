@@ -73,10 +73,10 @@ const UserProfile = () => {
                 </div>
             </div>
 
-            <form onSubmit={handleUpdateProfile} className='w-full bg-base-100 shadow-md rounded-2xl justify-between items-center px-10 py-10'>
+            <form onSubmit={handleUpdateProfile} className='w-full bg-base-100 shadow-md rounded-2xl justify-between items-center px-10 py-10 text-secondary'>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm text-gray-600 mb-1">Name</label>
+                        <label className="block text-sm mb-1">Name</label>
                         <input
                             type="text"
                             placeholder="Md. Rakiul"
@@ -87,7 +87,7 @@ const UserProfile = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm text-gray-600 mb-1">Email Address</label>
+                        <label className="block text-sm mb-1">Email Address</label>
                         <input
                             type="email"
                             placeholder="rakibulxyz@gmail.com"
@@ -100,7 +100,7 @@ const UserProfile = () => {
                 </div>
 
                 <div className='mt-4'>
-                    <label className="block text-sm text-gray-600 mb-1">Photo-URL</label>
+                    <label className="block text-sm mb-1">Photo-URL</label>
                     <input
                         type="text"
                         placeholder="https://..."
