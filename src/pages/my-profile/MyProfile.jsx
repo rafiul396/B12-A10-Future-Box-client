@@ -17,7 +17,7 @@ const MyProfile = () => {
   return (
     <section className="min-h-screen bg-neutral flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="w-full md:w-1/4 lg:w-1/5 bg-accent-content shadow-sm flex flex-row md:flex-col items-center md:items-start p-4 md:p-6">
+      <aside className="w-full hidden md:w-1/4 lg:w-1/5 bg-accent-content shadow-sm lg:flex flex-row md:flex-col items-center md:items-start p-4 md:p-6">
         <h2 className="text-xl font-semibold mb-6 hidden md:block">My Profile</h2>
         <nav className="flex flex-row md:flex-col w-full justify-around md:justify-start space-y-0 md:space-y-6">
           <a

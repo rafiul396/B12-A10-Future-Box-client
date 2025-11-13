@@ -6,6 +6,8 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
+    const [income, setIncome] = useState([])
+    const [expense, setExpense] = useState([])
     const [themeController, setThemeController] = useState('dark')
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);

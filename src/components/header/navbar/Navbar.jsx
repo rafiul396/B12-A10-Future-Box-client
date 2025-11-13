@@ -5,6 +5,7 @@ import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../../provider/AuthProvider';
 import userLogo from '../../../assets/user.png'
 import Switch from '../../theme-change-btn/Switch';
+import { FiUser } from 'react-icons/fi';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -40,15 +41,15 @@ const Navbar = () => {
                     {
                         user ? (
                             <>
-                                        <Switch />
+                                <Switch />
                                 <img onClick={profileClicker} title={user?.displayName} className='w-12 h-12 cursor-pointer object-fill rounded-full border-2 border-primary p-[2px]' src={user.photoURL ? user.photoURL : userLogo} alt="Profile Picture" />
                                 {open && (
-                                    <div className="absolute right-16 top-14 w-48 bg-secondary border border-accent rounded shadow-lg z-50 space-y-2 py-2">
-                                        <div className='p-2'>
-                                            <p className=" text-sm font-semibold text-base text-gray-700">{user.displayName}</p>
-                                            <p className=" text-sm text-gray-700">{user.email}</p>
+                                    <div className="absolute right-16 top-14 w-48 bg-accent-content border border-accent rounded shadow-lg z-50 space-y-2 py-2">
+                                        <div className='p-2 text-secondary'>
+                                            <p className="font-semibold text-base">{user.displayName}</p>
+                                            <p className=" text-sm">{user.email}</p>
                                         </div>
-                                        <Link to="/my-profile" onClick={() => setOpen(false)} className="block w-full text-left px-4 py-2 text-black hover:bg-gray-100">My Profile</Link>
+                                        <Link to="/my-profile" onClick={() => setOpen(false)} className=" border border-accent w-full flex justify-center items-center text-secondary text-left px-4 py-2"> <FiUser className="text-lg text-primary" /> My Profile</Link>
                                         <button className='bg-orange-500 w-full cursor-pointer text-white text-sm px-5 py-2 rounded-full hover:bg-primary transition' onClick={logOut}>
                                             Log out
                                         </button>
@@ -57,9 +58,9 @@ const Navbar = () => {
 
                             </>
                         ) : (
-                            <>  
-                                
-                                        <Switch />
+                            <>
+
+                                <Switch />
                                 <Link to="/login" className="bg-[#0d1b2a] cursor-pointer text-white text-sm px-5 py-2 rounded-full hover:opacity-90 transition">
                                     Log In
                                 </Link>
@@ -86,6 +87,13 @@ const Navbar = () => {
             {isOpen && (
                 <div className="p-4 mt-4 w-full bg-base-100 lg:hidden flex flex-col space-y-3 text-gray-700 font-medium absolute z-50 top-12 left-0">
                     <ul className="header-menu flex flex-col space-y-3">
+                        {/* <div className="absolute right-16 top-14 w-48 bg-accent-content border border-accent rounded shadow-lg z-50 space-y-2 py-2"> */}
+                            <div className='p-2 text-secondary'>
+                                <p className="font-semibold text-base">{user.displayName}</p>
+                                <p className=" text-sm">{user.email}</p>
+                            </div>
+                            <Link to="/my-profile" onClick={toggleMenu} className=" border border-accent w-full flex justify-center items-center text-secondary text-left px-4 py-2"> <FiUser className="text-lg text-primary" /> My Profile</Link>
+                        {/* </div> */}
                         <li><NavLink className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300" to="/" onClick={toggleMenu} >Home</NavLink></li>
                         <li><NavLink className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300" to="/add-transaction" onClick={toggleMenu}>Add Transaction</NavLink></li>
                         <li><NavLink className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300" to="/my-transaction" onClick={toggleMenu}>My Transactions</NavLink></li>

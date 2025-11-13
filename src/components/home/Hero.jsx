@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useEffect } from 'react';
 import bannerLight from '../../assets/hero-banner.png'
 import bannerDark from '../../assets/hero-banner-dark.png'
 import ReportCard from './hero-section/ReportCard';
@@ -11,13 +11,11 @@ import { AuthContext } from '../../provider/AuthProvider';
 const Hero = () => {
     const { user } = use(AuthContext)
     const { themeController } = use(AuthContext)
-    console.log(themeController);
-    console.log(user);
-    
+
     return (
         <section className="h-[calc(100vh-66.73px)] bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${themeController === 'dark' ? bannerDark : bannerLight})` }}>
             <div className='bg-gradient-to-b flex justify-center items-center from-accent to-[#ff690000] h-full w-full'>
-                <div className="w-full py-20 px-6 lg:px-20 flex flex-col items-center text-center relative">
+                <div className="w-full lg:py-20 px-6 lg:px-20 flex flex-col items-center justify-center text-center relative">
                     <h1 className="text-primary text-3xl xl:text-5xl font-bold leading-tight max-w-3xl">
                         Take control of your money, <br /> one smart step at a time
                     </h1>
@@ -44,28 +42,26 @@ const Hero = () => {
                     <div className="absolute -right-72 top-10 rotate-[-8deg] hidden lg:block">
                         <ReportCard image={rightChart} />
                     </div>
-
-
                     <div className="hidden  md:grid grid-cols-3 gap-6 mt-14">
 
                         <StatCard
                             title="Total Income"
                             amount="18,532"
-                            change="+11%"
+                            change="look your income"
                             changeColor="text-green-500"
                         />
 
                         <StatCard
                             title="Total Expense"
                             amount="3,177"
-                            change="+11%"
+                            change="compare with expense"
                             changeColor="text-orange-500"
                         />
 
                         <StatCard
                             title="Total Savings"
                             amount="1658"
-                            change="+8%"
+                            change="remember your savings"
                             changeColor="text-blue-500"
                         />
 

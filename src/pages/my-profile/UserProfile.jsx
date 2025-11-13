@@ -52,7 +52,7 @@ const UserProfile = () => {
 
     return (
         < main className="flex-1 flex flex-col py-5 px-6 space-y-10" >
-            <div className="flex w-full bg-base-100 shadow-md rounded-2xl justify-between items-center px-10 py-5">
+            <div className="flex w-full flex-col md:flex-row bg-base-100 shadow-md rounded-2xl justify-between items-center px-10 py-5">
                 <div className="relative w-24 h-24 md:w-28 md:h-28">
                     <img
                         src={user?.photoURL ? user?.photoURL : userProfile}
