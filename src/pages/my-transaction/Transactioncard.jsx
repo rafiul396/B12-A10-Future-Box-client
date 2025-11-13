@@ -42,28 +42,24 @@ const Transactioncard = ({ info, infos, setInfos }) => {
         });
     }
 
-    const onUpdate = () => {
-        alert('hello')
-    }
-
     return (
         <>
-            <div className="bg-base-100 rounded-xl shadow-md p-5 w-full transition hover:shadow-lg border border-accent hover:border-primary">
-                <div className="flex justify-between items-start mb-4">
+            <div className="bg-base-100 rounded-xl shadow-md p-5 w-full transition hover:shadow-lg text-secondary border border-accent hover:border-primary">
+                <div className="flex justify-between items-start mb-4 text-secondary">
                     <h3
                         className={`text-lg font-semibold`}
                     >
                         {type}
                     </h3>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{date}</span>
+                    <span className="text-sm">{date}</span>
                 </div>
 
                 <div className="space-y-2 mb-4">
-                    <p className="text-gray-700 dark:text-gray-200">
-                        <span className="font-medium text-gray-800 dark:text-gray-300">Category:</span> {category}
+                    <p>
+                        <span className="font-medium">Category:</span> {category}
                     </p>
-                    <p className="text-gray-700 dark:text-gray-200">
-                        <span className="font-medium text-gray-800 dark:text-gray-300">Amount:</span> {amount}
+                    <p>
+                        <span className="font-medium">Amount:</span> {amount} BDT
                     </p>
                 </div>
 
