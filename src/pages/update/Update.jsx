@@ -4,14 +4,20 @@ import { useLoaderData, useNavigate, useParams } from 'react-router';
 import toast from 'react-hot-toast';
 import { use } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
+import Loader from '../../loader/Loader';
 
 const Update = () => {
     const [bool, setBool] = useState('')
     const [info, setInfo] = useState({});
     const [loader, setLoader] = useState(true)
+    const [loading, setLoading] = useState(false)
     const {id} = useParams();
     const {user} = use(AuthContext);
     const navigate = useNavigate();
+
+    const loaderTrueFalse = () => {
+            setLoading(true)
+        }
 
      useEffect(() => {
             fetch(`https://finease-lyart.vercel.app/my-transaction/${id}`, {
@@ -33,6 +39,7 @@ const Update = () => {
         setBool(type)
         setLoader(false)
     }, [type])
+    
 
      const handleIncome = (e) => {
             e.preventDefault();
@@ -44,6 +51,8 @@ const Update = () => {
                 date: e.target.date.value,
             }
             // console.log(incomeData);
+
+            loaderTrueFalse();
     
             fetch(`https://finease-lyart.vercel.app/my-transaction/${_id}`, {
                 method: 'PUT',
@@ -57,6 +66,7 @@ const Update = () => {
                     console.log(data);
                     toast.success('Successfully Updated!')
                     navigate(`/transaction-details/${id}`)
+                    setLoading(false)
                 })
                 .catch(err => {
                     console.log(err);
@@ -74,7 +84,9 @@ const Update = () => {
                 description: e.target.description.value,
                 date: e.target.date.value
             }
-            // console.log(expenseData);
+
+
+            loaderTrueFalse();
     
             fetch(`https://finease-lyart.vercel.app/my-transaction/${_id}`, {
                 method: 'PUT',
@@ -90,6 +102,7 @@ const Update = () => {
                     console.log(data);                    
                     toast.success('Successfully Updated!')
                     navigate(`/transaction-details/${id}`)
+                    setLoading(false)
                 })
                 .catch(err => {
                     console.log(err);
@@ -98,7 +111,7 @@ const Update = () => {
     }
     
     if(loader){
-        return <h1>Loading...</h1>
+        return <Loader />
     }
 
     return (
@@ -113,18 +126,18 @@ const Update = () => {
 
                     <div className="w-full lg:w-[400px]">
                         {/* <h2 className='font-semibold text-xl lg:text-3xl mb-8 text-center'>Choose Your <span className='text-primary'>Transaction</span></h2> */}
-                        <div className='flex justify-center'>
-                            <button className={`px-10 py-2 border-2 border-primary border-r-0 font-semibold rounded-tl-lg rounded-bl-lg cursor-pointer text-black ${bool === 'Income' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('Income')}>Income</button>
-                            <button className={`px-10 py-2 border-2 border-primary border-l-0 font-semibold rounded-tr-lg rounded-br-lg cursor-pointer text-black ${bool === 'Expense' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('Expense')}>Expense</button>
+                        <div className='flex justify-center text-secondary'>
+                            <button className={`px-10 py-2 border-2 border-primary border-r-0 font-semibold rounded-tl-lg rounded-bl-lg cursor-pointer ${bool === 'Income' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('Income')}>Income</button>
+                            <button className={`px-10 py-2 border-2 border-primary border-l-0 font-semibold rounded-tr-lg rounded-br-lg cursor-pointer ${bool === 'Expense' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('Expense')}>Expense</button>
                         </div>
                         {
                             bool === 'Income' ? (
-                                <div className='mt-5'>
+                                <div className='mt-5 text-secondary'>
                                     <h2 className='font-semibold text-lg lg:text-3xl mb-8 text-center'>Update Your <span className='text-primary'>Income</span></h2>
-                                    <form onSubmit={handleIncome} className='space-y-3'>
+                                    <form onSubmit={handleIncome} className='space-y-3 text-secondary'>
 
-                                        <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Select Income Category</label>
-                                        <select defaultValue={category} id="category"
+                                        <label htmlFor="category" className="block text-sm font-medium mb-1">Select Income Category</label>
+                                        <select defaultValue={'Salary'} id="category"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary"
                                             name='category'>
                                             <option value="Salary">Salary</option>
@@ -134,7 +147,7 @@ const Update = () => {
                                         </select>
 
                                         <label
-                                            htmlFor="amt" className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                                            htmlFor="amt" className="block text-sm font-medium mb-1">Amount</label>
                                         <input
                                             type="number"
                                             id="amt"
@@ -144,7 +157,7 @@ const Update = () => {
                                             defaultValue={amount}
                                         />
 
-                                        <label htmlFor="des" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                        <label htmlFor="des" className="block text-sm font-medium mb-1">Description</label>
                                         <textarea
                                             id="des"
                                             cols="30"
@@ -154,7 +167,7 @@ const Update = () => {
                                             name='description' 
                                             defaultValue={description}></textarea>
 
-                                        <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+                                        <label htmlFor="date" className="block text-sm font-medium mb-1">Select Date</label>
                                         <input
                                             type="date"
                                             id="date"
@@ -163,17 +176,17 @@ const Update = () => {
                                             defaultValue={date}
                                         />
 
-                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold text-white transition'>
-                                            Update Transaction
+                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold transition'>
+                                            Update Transaction{loading ? <span className='text-xl animate-pulse'>. . .</span> : ''}
                                         </button>
                                     </form>
                                 </div>
                             ) : (
-                                <div className='mt-5'>
+                                <div className='mt-5 text-secondary'>
                                     <h2 className='font-semibold text-lg lg:text-3xl mb-8 text-center'>Update Your <span className='text-primary'>Expense</span></h2>
                                     <form onSubmit={handleExpense} className='space-y-3'>
 
-                                        <label  htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Select Expense Category</label>
+                                        <label  htmlFor="category" className="block text-sm font-medium mb-1">Select Expense Category</label>
                                         <select defaultValue={category} id="category"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary" name='category'>
                                             <option value="Home rent">Home rent</option>
@@ -188,7 +201,7 @@ const Update = () => {
                                             <option value="Others">Others</option>
                                         </select>
 
-                                        <label htmlFor="amt" className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                                        <label htmlFor="amt" className="block text-sm font-medium mb-1">Amount</label>
                                         <input
                                             type="number"
                                             id="amt"
@@ -198,7 +211,7 @@ const Update = () => {
                                             defaultValue={amount}
                                         />
 
-                                        <label htmlFor="des" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                        <label htmlFor="des" className="block text-sm font-medium mb-1">Description</label>
                                         <textarea
                                             id="des"
                                             cols="30"
@@ -208,7 +221,7 @@ const Update = () => {
                                             name='description'
                                             defaultValue={description} ></textarea>
 
-                                        <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+                                        <label htmlFor="date" className="block text-sm font-medium mb-1">Select Date</label>
                                         <input
                                             type="date"
                                             id="date"
@@ -217,8 +230,8 @@ const Update = () => {
                                             defaultValue={date}
                                         />
 
-                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold text-white transition'>
-                                            Update Transaction
+                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold  transition'>
+                                            Update Transaction{loading ? <span className='text-xl animate-pulse'>. . .</span> : ''}
                                         </button>
                                     </form>
                                 </div>

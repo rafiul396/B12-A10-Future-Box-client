@@ -47,7 +47,7 @@ const Report = () => {
 });
 
     return (
-        <div className='bg-[#f5f5f5] py-10'>
+        <div className='bg-neutral min-h-screen py-10'>
             <Container>
 
                 <PieChartExample updatedExpenseData={updatedExpenseData} />

@@ -40,15 +40,6 @@ const Details = () => {
         })
     }, [])
 
-
-
-
-
-
-    const onUpdate = () => {
-        alert('on update')
-    }
-
     const onDelete = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -93,7 +84,7 @@ const Details = () => {
 
     return (
         <div>
-            <section className='flex items-center min-h-screen py-10 bg-[#f5f5f5] text-black px-7 xl:px-0'>
+            <section className='flex items-center min-h-screen py-10 bg-neutral px-7 xl:px-0 text-secondary'>
                 <Container>
                     <div className='shadow-sm p-10 xl:px-52 rounded-xl bg-base-100 relative overflow-hidden'>
                         <div className='w-[200px] h-[200px] bg-accent rounded-full absolute -top-16 -left-28 '></div>
@@ -102,7 +93,7 @@ const Details = () => {
                             <h2 className='text-4xl text-primary text-center font-semibold'>{type}</h2>
                             <div className='flex justify-between'>
                                 <p className='text-2xl font-semibold'>Amount of {type} : {amount} BDT</p>
-                                <p className='text-xl text-gray-500'>Date of {type} : {date}</p>
+                                <p className='text-xl'>Date of {type} : {date}</p>
                             </div>
                             <p className='text-2xl font-semibold'>{type} category "{category}"</p>
                             <div>

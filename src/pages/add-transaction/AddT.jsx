@@ -73,7 +73,6 @@ const AddT = () => {
             })
             .catch(err => {
                 // console.log(err);
-
             })
 
     }
@@ -143,7 +142,7 @@ const AddT = () => {
 
 
     return (
-        <section className='flex items-center py-10 min-h-screen bg-[#f5f5f5] text-black px-7 xl:px-0'>
+        <section className='flex items-center py-10 min-h-screen bg-neutral text-black px-7 xl:px-0'>
             <Container>
                 <div className='flex flex-col md:flex-row justify-center items-center shadow-sm p-10 xl:px-52 rounded-xl bg-base-100 relative overflow-hidden'>
                     <div className='w-[100px] h-[100px] lg:w-[200px] lg:h-[200px] bg-accent rounded-full absolute -top-12 -left-16 lg:-top-16 lg:-left-28 '></div>
@@ -151,19 +150,19 @@ const AddT = () => {
                     <div className='justify-center items-center flex-col space-y-4 hidden lg:flex'>
 
                     </div>
-                    <div className="w-full lg:w-[400px]">
+                    <div className="w-full lg:w-[400px] text-secondary">
                         {/* <h2 className='font-semibold text-xl lg:text-3xl mb-8 text-center'>Choose Your <span className='text-primary'>Transaction</span></h2> */}
                         <div className='flex justify-center'>
-                            <button className={`px-10 py-2 border-2 border-primary border-r-0 font-semibold rounded-tl-lg rounded-bl-lg cursor-pointer text-black ${bool === 'income' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('income')}>Income</button>
-                            <button className={`px-10 py-2 border-2 border-primary border-l-0 font-semibold rounded-tr-lg rounded-br-lg cursor-pointer text-black ${bool === 'expense' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('expense')}>Expense</button>
+                            <button className={`px-10 py-2 border-2 border-primary border-r-0 font-semibold rounded-tl-lg rounded-bl-lg cursor-pointer ${bool === 'income' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('income')}>Income</button>
+                            <button className={`px-10 py-2 border-2 border-primary border-l-0 font-semibold rounded-tr-lg rounded-br-lg cursor-pointer ${bool === 'expense' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('expense')}>Expense</button>
                         </div>
                         {
                             bool === 'income' ? (
-                                <div className='mt-5'>
+                                <div className='mt-5 text-secondary'>
                                     <h2 className='font-semibold text-lg lg:text-3xl mb-8 text-center'>Add Your <span className='text-primary'>Income</span></h2>
-                                    <form onSubmit={handleIncome} className='space-y-3'>
+                                    <form onSubmit={handleIncome} className='space-y-3 text-secondary'>
 
-                                        <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Select Income Category</label>
+                                        <label htmlFor="category" className="block text-sm font-medium mb-1">Select Income Category</label>
                                         <select id="category"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary"
                                             name='category'>
@@ -173,8 +172,9 @@ const AddT = () => {
                                             <option>Side Business</option>
                                         </select>
 
-                                        <label
-                                            htmlFor="amt" className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                                        <label htmlFor="amt" className="block text-sm font-medium mb-1">
+                                            Amount
+                                        </label>
                                         <input
                                             type="number"
                                             id="amt"
@@ -183,7 +183,7 @@ const AddT = () => {
                                             name='amount'
                                         />
 
-                                        <label htmlFor="des" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                        <label htmlFor="des" className="block text-sm font-medium mb-1">Description</label>
                                         <textarea
                                             id="des"
                                             cols="30"
@@ -192,7 +192,7 @@ const AddT = () => {
                                             placeholder='Write Your Income Description...'
                                             name='description' ></textarea>
 
-                                        <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+                                        <label htmlFor="date" className="block text-sm font-medium mb-1">Select Date</label>
                                         <input
                                             type="date"
                                             id="date"
@@ -200,7 +200,7 @@ const AddT = () => {
                                             name="date"
                                         />
 
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
                                         <input
                                             type="text"
                                             id="email"
@@ -211,7 +211,7 @@ const AddT = () => {
                                             name='email'
                                         />
 
-                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                        <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
                                         <input
                                             type="text"
                                             id="name"
@@ -222,7 +222,7 @@ const AddT = () => {
                                             name='names'
                                         />
 
-                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold text-white transition'>
+                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold transition'>
                                             Add Transaction{loading ? <span className='text-xl animate-pulse'>. . .</span> : ''}
                                         </button>
                                     </form>
@@ -230,9 +230,9 @@ const AddT = () => {
                             ) : (
                                 <div className='mt-5'>
                                     <h2 className='font-semibold text-lg lg:text-3xl mb-8 text-center'>Add Your <span className='text-primary'>Expense</span></h2>
-                                    <form onSubmit={handleExpense} className='space-y-3'>
+                                    <form onSubmit={handleExpense} className='space-y-3 text-secondary'>
 
-                                        <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Select Expense Category</label>
+                                        <label htmlFor="category" className="block text-sm font-medium  mb-1">Select Expense Category</label>
                                         <select id="category"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary" name='category'>
                                             <option>Home rent</option>
@@ -247,7 +247,7 @@ const AddT = () => {
                                             <option>Others</option>
                                         </select>
 
-                                        <label htmlFor="amt" className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                                        <label htmlFor="amt" className="block text-sm font-medium mb-1">Amount</label>
                                         <input
                                             type="number"
                                             id="amt"
@@ -256,7 +256,7 @@ const AddT = () => {
                                             name='amount'
                                         />
 
-                                        <label htmlFor="des" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                        <label htmlFor="des" className="block text-sm font-medium mb-1">Description</label>
                                         <textarea
                                             id="des"
                                             cols="30"
@@ -265,7 +265,7 @@ const AddT = () => {
                                             placeholder='Write Your Income Description...'
                                             name='description' ></textarea>
 
-                                        <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+                                        <label htmlFor="date" className="block text-sm font-medium mb-1">Select Date</label>
                                         <input
                                             type="date"
                                             id="date"
@@ -273,7 +273,7 @@ const AddT = () => {
                                             name="date"
                                         />
 
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
                                         <input
                                             type="text"
                                             id="email"
@@ -284,7 +284,7 @@ const AddT = () => {
                                             name='email'
                                         />
 
-                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                        <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
                                         <input
                                             type="text"
                                             id="name"
@@ -295,7 +295,7 @@ const AddT = () => {
                                             name='names'
                                         />
 
-                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold text-white transition'>
+                                        <button className='btn p-5 rounded-lg w-full hover:bg-primary border-none shadow-none duration-300 text-lg bg-[#ff6900de] font-semibold transition'>
                                             Add Transaction{loading ? <span className='text-xl animate-pulse'>. . .</span> : ''}
                                         </button>
                                     </form>

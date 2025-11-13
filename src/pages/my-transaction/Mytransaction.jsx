@@ -11,12 +11,12 @@ import Loader from '../../loader/Loader';
 
 const Mytransaction = () => {
     const { user } = use(AuthContext)
-    
+
     const [infos, setInfos] = useState([])
     const [loader, setLoader] = useState(true)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/my-transaction?email=${user.email}`, {
+        fetch(`https://finease-lyart.vercel.app/my-transaction?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`
             }
@@ -34,7 +34,7 @@ const Mytransaction = () => {
 
 
     return (
-        <section className='bg-[#f5f5f5] py-10 min-h-screen'>
+        <section className='bg-neutral py-10 min-h-screen'>
             <Container>
                 <h2 className='font-semibold text-lg lg:text-3xl mb-8 text-center'>My <span className='text-primary'>Transactions</span></h2>
                 {
