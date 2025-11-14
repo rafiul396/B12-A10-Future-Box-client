@@ -48,14 +48,14 @@ const Hero = () => {
                             <StatCard
                                 title="Total Income"
                                 amount="18,532"
-                                change="look your income"
+                                change="look your expense"
                                 changeColor="text-green-500"
                             />
 
                             <StatCard
                                 title="Total Expense"
                                 amount="3,177"
-                                change="compare with expense"
+                                change="compare with income"
                                 changeColor="text-orange-500"
                             />
 
