@@ -50,14 +50,17 @@ const Mytransaction = () => {
             } else if (sorted === 'highToLow') {
                 return [...sortedByType].sort((a, b) => (b.amount) - (a.amount))
             } else if (sorted === 'Newest') {
-                return [...sortedByType].sort((a, b) => (new Date((a.amount))) - (new Date((b.amount))))
+                return [...sortedByType].sort((a, b) => new Date((b.date)) - new Date((a.date)))
             } else if (sorted === 'Oldest') {
-                return [...sortedByType].sort((a, b) => (new Date((b.amount))) - (new Date((a.amount))))
+                return [...sortedByType].sort((a, b) => new Date((a.date)) - new Date((b.date)))
             } else {
                 return sortedByType;
             }
         }
     )()
+
+    console.log(sortedTransactions);
+    
 
 
     if (loader) {
@@ -70,15 +73,15 @@ const Mytransaction = () => {
             <Container>
                 <h2 className='font-semibold text-lg lg:text-3xl mb-8 text-center'>My <span className='text-primary'>Transactions</span></h2>
                 <div className='flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-center mb-4'>
-                    <h5 className='font-semibold'>{infos.length} Transaction Found</h5>
+                    <h5 className='font-semibold'><span className='text-primary'>{sortedTransactions.length}</span> Transaction{sortedTransactions.length > 1 && 's'} Found</h5>
                     {/* sorting apps by its size */}
                     <div className='flex flex-col md:flex-row gap-2'>
-                        <select defaultValue={"Sorted my Income & Expense"} onChange={(e) => setSortedType(e.target.value)} className="select w-[200px] outline-0">
+                        <select defaultValue={"Sorted my Income & Expense"} onChange={(e) => setSortedType(e.target.value)} className="select w-[200px] border-accent outline-0 focus:outline-none focus:border-primary">
                             <option value='none'>Sort by Income & Expense</option>
                             <option value='Income'>Income</option>
                             <option value='Expense'>Expense</option>
                         </select>
-                        <select defaultValue={"Sorted my Date and Amount"} onChange={(e) => setSorted(e.target.value)} className="select w-[200px] outline-0">
+                        <select defaultValue={"Sorted my Date and Amount"} onChange={(e) => setSorted(e.target.value)} className="select w-[200px] border-accent outline-0 focus:outline-none focus:border-primary">
                             <option value='none'>Sort by Date & Amount</option>
                             <option value='lowToHigh'>Low Amount - High Amount</option>
                             <option value='highToLow'>High Amount - Low Amount</option>

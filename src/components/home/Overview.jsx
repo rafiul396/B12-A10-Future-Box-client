@@ -57,21 +57,21 @@ const Overview = () => {
                         <StatCard
                             title="Total Income"
                             amount={totalIncome}
-                            change={totalIncome ? (totalIncome > totalExpense ? "Great! You're earning more than you're spending." : "Warning: Your expense is equal or higher than your income.") : "No income data found yet!"}
+                            change={totalIncome ? (totalExpense === totalIncome ? "Your income is equal to your expense." : (totalIncome > totalExpense ? "Great! You're earning more than you're spending." : "Warning: Your earning is lesser than your income.")) : "No income data found yet!"}
                             changeColor="text-green-500"
                         />
 
                         <StatCard
                             title="Total Expense"
                             amount={totalExpense}
-                            change={totalExpense ? (totalIncome < totalExpense ? "Warning: Your expense is equal or higher than your income." : "Great! You're earning more than you're spending.") : "No expense data found yet!"}
+                            change={totalExpense ? (totalExpense === totalIncome ? "Your expense is equal to your income." : (totalIncome < totalExpense ? "Warning: Your expense is higher than your income." : "Great! You're earning more than you're spending.")) : "No expense data found yet!"}
                             changeColor="text-orange-500"
                         />
 
                         <StatCard
                             title="Total Savings"
-                            amount={(totalIncome - totalExpense) < 0 ? 0 : (totalIncome - totalExpense)}
-                            change={(totalIncome - totalExpense) < 0 ? "No savings. Try reducing some expenses." : "Good job! You have savings this month."}
+                            amount={(totalIncome - totalExpense) <= 0 ? 0 : (totalIncome - totalExpense)}
+                            change={(totalIncome - totalExpense) <= 0 ? "No savings. Try reducing some expenses." : "Good job! You have savings this month."}
                             changeColor="text-blue-500"
                         />
 
