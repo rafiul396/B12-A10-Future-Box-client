@@ -47,13 +47,13 @@ const Report = () => {
 });
 
     return (
-        <div className='bg-neutral min-h-screen py-10'>
+        <section className='bg-neutral min-h-screen py-10'>
             <Container>
 
                 <PieChartExample updatedExpenseData={updatedExpenseData} />
 
             </Container>
-        </div>
+        </section>
     );
 };
 

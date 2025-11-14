@@ -10,6 +10,7 @@
   --color-accent: #ff690066;
   --color-accent-content: #fff;
   --color-neutral: #f5f5f5;
+  --color-info: white;
 }
 @plugin "daisyui/theme" {
   name: "dark";
@@ -17,7 +18,8 @@
   --color-secondary: white;
   --color-accent: #ff690066;
   --color-accent-content: black;
-  --color-neutral: #545454
+  --color-neutral: #545454;
+  --color-info: #1d232a;
 }
 
 .header-menu .active {

@@ -14,8 +14,8 @@ const COLORS = ["#6366F1", "#F59E0B", "#10B981", "#EF4444", "#3B82F6", "#8B5CF6"
 const PieChartExample = ({ updatedExpenseData }) => {
     // Example data format:
     return (
-        <div className="w-full h-[450px] bg-white dark:bg-slate-800 p-5 rounded-xl shadow-md">
-            <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100 text-center">
+        <div className="w-full h-[450px] bg-info text-secondary p-5 rounded-xl shadow-md">
+            <h2 className="text-lg font-semibold text-center">
                 Financial Summary
             </h2>
                 <ResponsiveContainer width="100%" height="100%">
