@@ -85,7 +85,7 @@ const Navbar = () => {
                 </div>
             </div>
             {isOpen && (
-                <div className="p-4 mt-4 w-full bg-base-100 lg:hidden flex flex-col space-y-3 text-gray-700 font-medium absolute z-50 top-12 left-0">
+                <div className="p-4 mt-4 w-full bg-base-100 lg:hidden flex flex-col space-y-3 text-gray-700 font-medium absolute z-50 top-12 left-0 text-secondary">
                     <ul className="header-menu flex flex-col space-y-3">
                         <li><NavLink className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300" to="/" onClick={toggleMenu} >Home</NavLink></li>
                         <li><NavLink className="cursor-pointer hover:text-primary hover:border-2 hover:border-primary border-2 border-base-100 px-2 py-1 rounded-full transition-all duration-300" to="/add-transaction" onClick={toggleMenu}>Add Transaction</NavLink></li>
