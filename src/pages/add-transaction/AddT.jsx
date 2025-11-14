@@ -13,8 +13,8 @@ const AddT = () => {
     const { user } = use(AuthContext)
 
     const loaderTrueFalse = () => {
-            setLoading(true)
-        }
+        setLoading(true)
+    }
 
     const handleIncome = (e) => {
         e.preventDefault();
@@ -92,8 +92,8 @@ const AddT = () => {
             email: e.target.email.value,
             name: e.target.names.value
         }
-        
-        
+
+
 
         // clear error msg
         setErrAmount(false)
@@ -165,11 +165,12 @@ const AddT = () => {
                                         <label htmlFor="category" className="block text-sm font-medium mb-1">Select Income Category</label>
                                         <select id="category"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary"
-                                            name='category'>
-                                            <option>Salary</option>
-                                            <option>Ride sharing</option>
-                                            <option>Pocket Money</option>
-                                            <option>Side Business</option>
+                                            name='category' defaultValue="Choose your income category">
+                                            <option value="Choose your income category">Choose your income category</option>
+                                            <option value="Salary">Salary</option>
+                                            <option value="Ride Sharing">Ride Sharing</option>
+                                            <option value="Pocket Money">Pocket Money</option>
+                                            <option value="Side Business">Side Business</option>
                                         </select>
 
                                         <label htmlFor="amt" className="block text-sm font-medium mb-1">
@@ -234,17 +235,18 @@ const AddT = () => {
 
                                         <label htmlFor="category" className="block text-sm font-medium  mb-1">Select Expense Category</label>
                                         <select id="category"
-                                            className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary" name='category'>
-                                            <option>Home rent</option>
-                                            <option>Food</option>
-                                            <option>Transportation</option>
-                                            <option>Health</option>
-                                            <option>Personal</option>
-                                            <option>Education</option>
-                                            <option>Technology</option>
-                                            <option>Entertainment</option>
-                                            <option>Family</option>
-                                            <option>Others</option>
+                                            className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary" defaultValue="Choose your expense category" name='category'>
+                                            <option value="Choose your expense category">Choose your expense category</option>
+                                            <option value="Home rent">Home rent</option>
+                                            <option value="Food">Food</option>
+                                            <option value="Transportation">Transportation</option>
+                                            <option value="Health">Health</option>
+                                            <option value="Personal">Personal</option>
+                                            <option value="Education">Education</option>
+                                            <option value="Technology">Technology</option>
+                                            <option value="Entertainment">Entertainment</option>
+                                            <option value="Family">Family</option>
+                                            <option value="Others">Others</option>
                                         </select>
 
                                         <label htmlFor="amt" className="block text-sm font-medium mb-1">Amount</label>

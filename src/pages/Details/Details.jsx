@@ -115,7 +115,7 @@ const Details = () => {
                                     </Link>
                                     <button
                                         onClick={onDelete}
-                                        className="px-4 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm transition"
+                                        className="cursor-pointer px-4 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm transition"
                                     >
                                         Delete
                                     </button>

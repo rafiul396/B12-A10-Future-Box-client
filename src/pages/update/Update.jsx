@@ -11,108 +11,115 @@ const Update = () => {
     const [info, setInfo] = useState({});
     const [loader, setLoader] = useState(true)
     const [loading, setLoading] = useState(false)
-    const {id} = useParams();
-    const {user} = use(AuthContext);
+    const [cat, setCat] = useState("");
+    const { id } = useParams();
+    const { user } = use(AuthContext);
     const navigate = useNavigate();
 
     const loaderTrueFalse = () => {
-            setLoading(true)
-        }
+        setLoading(true)
+    }
 
-     useEffect(() => {
-            fetch(`https://finease-lyart.vercel.app/my-transaction/${id}`, {
-                headers: {
-                    authorization: `Bearer ${user.accessToken}`
-                }
+    useEffect(() => {
+        setLoader(true)
+        fetch(`https://finease-lyart.vercel.app/my-transaction/${id}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`
+            }
+        })
+            .then(result => {
+                return result.json()
             })
-                .then(result => {
-                    return result.json()
-                })
-                .then(data => {
-                    setInfo(data)
-                    setLoader(false)
-                })
-        }, [])
-
+            .then(data => {
+                setInfo(data)
+                setCat(data.category);
+                setLoader(false)
+            }).finally(() => setLoader(false))
+    }, [])
     const { type, category, amount, date, description, _id } = info;
+
     useEffect(() => {
         setBool(type)
         setLoader(false)
     }, [type])
-    
 
-     const handleIncome = (e) => {
-            e.preventDefault();
-            const incomeData = {
-                type: "Income",
-                category: e.target.category.value,
-                amount: e.target.amount.value,
-                description: e.target.description.value,
-                date: e.target.date.value,
-            }
-            // console.log(incomeData);
 
-            loaderTrueFalse();
-    
-            fetch(`https://finease-lyart.vercel.app/my-transaction/${_id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(incomeData)
-            })
-                .then(result => result.json())
-                .then(data => {
-                    console.log(data);
-                    toast.success('Successfully Updated!')
-                    navigate(`/transaction-details/${id}`)
-                    setLoading(false)
-                })
-                .catch(err => {
-                    console.log(err);
-    
-                })
-    
+
+    const handleIncome = (e) => {
+        e.preventDefault();
+        const incomeData = {
+            type: "Income",
+            category: e.target.category.value,
+            amount: e.target.amount.value,
+            description: e.target.description.value,
+            date: e.target.date.value,
         }
-    
-        const handleExpense = (e) => {
-            e.preventDefault();
-            const expenseData = {
-                type: 'Expense',
-                category: e.target.category.value,
-                amount: e.target.amount.value,
-                description: e.target.description.value,
-                date: e.target.date.value
-            }
+        // console.log(incomeData);
 
+        loaderTrueFalse();
 
-            loaderTrueFalse();
-    
-            fetch(`https://finease-lyart.vercel.app/my-transaction/${_id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(expenseData)
+        fetch(`https://finease-lyart.vercel.app/my-transaction/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(incomeData)
+        })
+            .then(result => result.json())
+            .then(data => {
+                console.log(data);
+                toast.success('Successfully Updated!')
+                navigate(`/transaction-details/${id}`)
+                setLoading(false)
             })
-                .then(result => {
-                    return result.json()
-                })
-                .then(data => {
-                    console.log(data);                    
-                    toast.success('Successfully Updated!')
-                    navigate(`/transaction-details/${id}`)
-                    setLoading(false)
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-    
+            .catch(err => {
+                console.log(err);
+
+            })
+
     }
-    
-    if(loader){
+
+    const handleExpense = (e) => {
+        e.preventDefault();
+        const expenseData = {
+            type: 'Expense',
+            category: e.target.category.value,
+            amount: e.target.amount.value,
+            description: e.target.description.value,
+            date: e.target.date.value
+        }
+
+
+        loaderTrueFalse();
+
+        fetch(`https://finease-lyart.vercel.app/my-transaction/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(expenseData)
+        })
+            .then(result => {
+                return result.json()
+            })
+            .then(data => {
+                console.log(data);
+                toast.success('Successfully Updated!')
+                navigate(`/transaction-details/${id}`)
+                setLoading(false)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+
+    if (loader) {
         return <Loader />
     }
+
+    console.log(category);
+
 
     return (
         <section className='flex items-center py-10 min-h-screen bg-neutral text-black px-7 xl:px-0'>
@@ -137,7 +144,8 @@ const Update = () => {
                                     <form onSubmit={handleIncome} className='space-y-3 text-secondary'>
 
                                         <label htmlFor="category" className="block text-sm font-medium mb-1">Select Income Category</label>
-                                        <select defaultValue={'Salary'} id="category"
+                                        <select value={cat}
+                                            onChange={(e) => setCat(e.target.value)} id="category"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary"
                                             name='category'>
                                             <option value="Salary">Salary</option>
@@ -164,7 +172,7 @@ const Update = () => {
                                             rows="4"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary"
                                             placeholder='Write Your Income Description...'
-                                            name='description' 
+                                            name='description'
                                             defaultValue={description}></textarea>
 
                                         <label htmlFor="date" className="block text-sm font-medium mb-1">Select Date</label>
@@ -186,8 +194,9 @@ const Update = () => {
                                     <h2 className='font-semibold text-lg lg:text-3xl mb-8 text-center'>Update Your <span className='text-primary'>Expense</span></h2>
                                     <form onSubmit={handleExpense} className='space-y-3'>
 
-                                        <label  htmlFor="category" className="block text-sm font-medium mb-1">Select Expense Category</label>
-                                        <select defaultValue={category} id="category"
+                                        <label htmlFor="category" className="block text-sm font-medium mb-1">Select Expense Category</label>
+                                        <select value={cat}
+                                            onChange={(e) => setCat(e.target.value)} id="category"
                                             className="w-full px-3 py-2 border border-accent rounded-lg bg-white text-gray-700 focus:outline-none focus:border-primary" name='category'>
                                             <option value="Home rent">Home rent</option>
                                             <option value="Food">Food</option>

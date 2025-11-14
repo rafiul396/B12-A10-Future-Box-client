@@ -39,10 +39,7 @@ const Mytransaction = () => {
             }
         }
     )()
-    console.log(sortedByType);
     
-
-
     const sortedTransactions = (
         () => {
             if (sorted === 'lowToHigh') {

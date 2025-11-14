@@ -72,7 +72,7 @@ const Transactioncard = ({ info, infos, setInfos }) => {
                     </Link>
                     <button
                         onClick={onDelete}
-                        className="px-4 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm transition"
+                        className="px-4 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm transition cursor-pointer"
                     >
                         Delete
                     </button>

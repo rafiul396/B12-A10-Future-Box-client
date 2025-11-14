@@ -20,7 +20,6 @@ const Navbar = () => {
         const html = document.querySelector('html');
         html.setAttribute("data-theme", theme)
         localStorage.setItem("theme", theme)
-        console.log(theme);
         
         setThemeController(theme)
       }, [theme])
