@@ -64,7 +64,7 @@ const Overview = () => {
                         <StatCard
                             title="Total Expense"
                             amount={totalExpense}
-                            change={totalExpense ? (totalExpense === totalIncome ? "Your expense is equal to your income." : (totalIncome < totalExpense ? "Warning: Your expense is higher than your income." : "Great! You're earning more than you're spending.")) : "No expense data found yet!"}
+                            change={totalExpense ? (totalExpense === totalIncome ? "Your expense is equal to your income." : (totalIncome < totalExpense ? "Warning: Your expense is higher than your income." : "Great! You're spending less than you're earning.")) : "No expense data found yet!"}
                             changeColor="text-orange-500"
                         />
 

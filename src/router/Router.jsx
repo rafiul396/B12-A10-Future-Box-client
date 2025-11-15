@@ -11,11 +11,13 @@ import Report from "../pages/report/Report";
 import Update from "../pages/update/Update";
 import MyProfile from "../pages/my-profile/MyProfile";
 import UserProfile from "../pages/my-profile/UserProfile";
+import NotFound from "../pages/error-message/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <NotFound />,
     children: [
         {
             index: true,
