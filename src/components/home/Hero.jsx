@@ -14,14 +14,14 @@ const Hero = () => {
 
     return (
         <>
-            <section className="h-[calc(100vh-66.73px)] bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${themeController === 'dark' ? bannerDark : bannerLight})` }}>
-                <div className='bg-gradient-to-b flex justify-center items-center from-accent to-[#ff690000] h-full w-full'>
+            <section className="md:h-[calc(100vh-66.73px)] bg-contain md:bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${themeController === 'dark' ? bannerDark : bannerLight})` }}>
+                <div className='py-5 md:py-0 bg-gradient-to-b flex justify-center items-center from-accent to-[#ff690000] h-full w-full'>
                     <div className="w-full lg:py-20 px-6 lg:px-20 flex flex-col items-center justify-center text-center relative">
-                        <h1 className="text-primary text-3xl xl:text-5xl font-bold leading-tight max-w-3xl">
+                        <h1 className="text-primary text-2xl md:text-3xl xl:text-5xl font-bold leading-tight max-w-3xl">
                             Take control of your money, <br /> one smart step at a time
                         </h1>
 
-                        <p className="mt-4 text-secondary max-w-xl">
+                        <p className="mt-4 text-lg md:text-xl lg:text-2xl text-secondary max-w-xl">
                             No complications, just a smarter way to manage your money — Make peace with your money and watch your goals breathe easier.
                         </p>
 

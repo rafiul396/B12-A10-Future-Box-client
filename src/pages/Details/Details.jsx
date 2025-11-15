@@ -75,7 +75,7 @@ const Details = () => {
         return <Loader />
     }
 
-    const { type, category, amount, date, description, email, name, _id } = sData;
+    const { type, category, amount, date, description, _id } = sData;
 
     // Total amount
     const sameCate = infos.filter(cate => cate.category === category)
@@ -84,20 +84,20 @@ const Details = () => {
 
     return (
         <div>
-            <section className='flex items-center min-h-screen py-10 bg-neutral px-7 xl:px-0 text-secondary'>
+            <section className='flex items-center py-5 lg:py-10 bg-neutral px-5 lg:px-7 xl:px-0 text-secondary'>
                 <Container>
                     <div className='shadow-sm p-10 xl:px-52 rounded-xl bg-base-100 relative overflow-hidden'>
                         <div className='w-[200px] h-[200px] bg-accent rounded-full absolute -top-16 -left-28 '></div>
                         <div className='w-[170px] h-[40px] bg-accent rounded-2xl absolute -right-5 -bottom-5'></div>
                         <div className='space-y-3'>
-                            <h2 className='text-4xl text-primary text-center font-semibold'>{type}</h2>
-                            <div className='flex justify-between'>
-                                <p className='text-2xl font-semibold'>Amount of {type} : {amount} BDT</p>
-                                <p className='text-xl'>Date of {type} : {date}</p>
+                            <h2 className='text-2xl lg:text-4xl text-primary text-center font-semibold'>{type}</h2>
+                            <div className='flex justify-between items-center flex-col md:flex-row'>
+                                <p className='text-xl md:text-2xl font-semibold'>Amount of {type} : {amount} BDT</p>
+                                <p className='text-lg md:text-xl'>Date of {type} : {date}</p>
                             </div>
                             <p className='text-2xl font-semibold'>{type} category "{category}"</p>
                             <div>
-                                <h2 className='text-xl'>Description</h2>
+                                <h2 className='text-lg md:text-xl'>Description</h2>
                                 <p className='text-base text-gray-800'>
                                     {description}
                                 </p>
@@ -106,7 +106,7 @@ const Details = () => {
                                 <p className='font-semibold'>Total {type} {type === 'Income' ? 'by' : 'for'} {category} : <b>{total}</b> BDT</p>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='space-x-2'>
+                                <div className='flex flex-col gap-4 md:gap-0 md:flex-row md:space-x-2'>
                                     <Link
                                         to={`/update/${_id}`}
                                         className="px-4 py-1.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg text-sm transition"

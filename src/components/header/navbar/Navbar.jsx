@@ -112,7 +112,6 @@ const Navbar = () => {
                                     Log out
                                 </button>
                             </>) : (<>
-                            <Switch />
                                 <Link to="/login" className="bg-[#0d1b2a] text-center text-white text-sm py-2 rounded-full hover:opacity-90 transition" onClick={toggleMenu}>
                                     Log In
                                 </Link>

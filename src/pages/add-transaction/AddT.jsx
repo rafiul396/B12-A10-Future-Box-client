@@ -145,14 +145,13 @@ const AddT = () => {
         <section className='flex items-center py-10 min-h-screen bg-neutral text-black px-7 xl:px-0'>
             <title>Add Transaction | FinEase</title>
             <Container>
-                <div className='flex flex-col md:flex-row justify-center items-center shadow-sm p-10 xl:px-52 rounded-xl bg-base-100 relative overflow-hidden'>
+                <div className='flex flex-col md:flex-row justify-center items-center shadow-sm p-5 lg:p-10 xl:px-52 rounded-xl bg-base-100 relative overflow-hidden'>
                     <div className='w-[100px] h-[100px] lg:w-[200px] lg:h-[200px] bg-accent rounded-full absolute -top-12 -left-16 lg:-top-16 lg:-left-28 '></div>
                     <div className='w-[170px] h-[40px] bg-accent rounded-2xl absolute -right-5 -bottom-5'></div>
                     <div className='justify-center items-center flex-col space-y-4 hidden lg:flex'>
 
                     </div>
                     <div className="w-full lg:w-[400px] text-secondary">
-                        {/* <h2 className='font-semibold text-xl lg:text-3xl mb-8 text-center'>Choose Your <span className='text-primary'>Transaction</span></h2> */}
                         <div className='flex justify-center'>
                             <button className={`px-10 py-2 border-2 border-primary border-r-0 font-semibold rounded-tl-lg rounded-bl-lg cursor-pointer ${bool === 'income' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('income')}>Income</button>
                             <button className={`px-10 py-2 border-2 border-primary border-l-0 font-semibold rounded-tr-lg rounded-br-lg cursor-pointer ${bool === 'expense' ? 'bg-accent' : 'bg-base-100'}`} onClick={() => setBool('expense')}>Expense</button>
