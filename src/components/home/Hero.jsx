@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react';
+import React, { use } from 'react';
 import bannerLight from '../../assets/hero-banner.png'
 import bannerDark from '../../assets/hero-banner-dark.png'
 import ReportCard from './hero-section/ReportCard';
@@ -14,8 +14,8 @@ const Hero = () => {
 
     return (
         <>
-            <section className="md:min-h-screen bg-contain md:bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${themeController === 'dark' ? bannerDark : bannerLight})` }}>
-                <div className='py-5 md:py-0 bg-gradient-to-b flex justify-center items-center from-accent to-[#ff690000] h-full w-full'>
+            <section className="md:min-h-screen flex justify-center items-center bg-contain md:bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${themeController === 'dark' ? bannerDark : bannerLight})` }}>
+                <div className='py-5 md:py-0  flex justify-center items-center  md:min-h-screen w-full bg-gradient-to-b from-accent to-[#ff690000]'>
                     <div className="w-full lg:py-20 px-6 lg:px-20 flex flex-col items-center justify-center text-center relative">
                         <h1 className="text-primary text-2xl md:text-3xl xl:text-5xl font-bold leading-tight max-w-3xl">
                             Take control of your money, <br /> one smart step at a time
